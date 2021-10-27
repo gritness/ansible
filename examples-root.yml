@@ -1,0 +1,22 @@
+- name: testing stuff
+  hosts: test
+  gather_facts: no
+  tasks:
+  - name: Ensure the httpd service is running
+    service:
+      name: httpd
+      state: started
+    become: yes
+
+---
+
+- name: testing stuff
+  hosts: test
+  gather_facts: no
+  tasks:
+  - name: keep it up
+    shell: "if ! systemctl is-active firewalld; then  echo 'inactive' ; fi"
+    register: firewalld_active
+    failed_when: False
+    changed_when: False
+    become: yes
