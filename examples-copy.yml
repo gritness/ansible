@@ -1,0 +1,22 @@
+- hosts: blocks
+  tasks:
+  - name: Ansible copy files remote to remote
+    copy:
+      src: /tmp/hello6
+      dest: /etc
+      remote_src: yes
+
+---
+
+# Creating backup of a file on the remote hosts before copy
+
+- hosts: blocks
+  tasks:
+  - name: ansible copy file backup example
+    copy:
+      src: ~/helloworld.txt
+      dest: /tmp
+      backup: yes
+
+---
+
